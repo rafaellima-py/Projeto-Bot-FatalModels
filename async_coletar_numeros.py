@@ -5,6 +5,7 @@ from playwright.async_api import async_playwright
 from time import sleep
 from pathlib import Path
 import asyncio
+from time import sleep
 todas_cidades = []
 uf_estados = json.loads(open('uf_estados.json').read())
 acompanhantes = []
@@ -73,9 +74,11 @@ async def buscar_numeros():
                             print(f'Acompanhante encontrado: {href}')
                             if href not in acompanhantes:
                                 acompanhantes.append(href)
-                for acompanhante in acompanhantes: 
+                for acompanhante in acompanhantes:
+                     
                     page2 = await context.new_page()
-                    await page2.goto(acompanhante)
+                    await page2.goto(acompanhante, timeout=80000)
+                    await asyncio.sleep(1)
                     content_p2 = await page2.content()
                     if 'Tenha acesso ao número de telefone desse e outros perfis no ' in content_p2:
                         print('Numero Bloqueado')

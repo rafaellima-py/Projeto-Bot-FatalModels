@@ -82,14 +82,18 @@ async def numeros(message):
 @bot.callback_query_handler(func=lambda call: True)
 async def handle_query(call):
     if call.data == "sp":
-        bot.send_message(call.message.chat.id, "Ok, Vamos coletar todos os numeros do estado de SP, isso vai demorar um tempo, mas eu aviso quando acabar")
-        filtrar_cidades_por_uf('sp')
-        buscar_numeros()
-        bot.send_message(call.message.chat.id, "Fim da coleta")
-        bot.send_message(call.message.chat.id, f"Coletamos {quantidade_numeros()} números")
+        global DATA
+        await bot.send_message(call.message.chat.id, "Ok, Vamos coletar todos os numeros do estado de SP, isso vai demorar um tempo, mas eu aviso quando acabar")
+        data_coleta = datetime.now()
+        DATA = data_coleta.strftime("%d/%m/%Y - %H:%M:%S")
+        await filtrar_cidades_por_uf('sp')
+        await buscar_numeros()
+        final = datetime.now().strftime("%d/%m/%Y - %H:%M:%S")
+        await bot.send_message(call.message.chat.id, f"Fim da coleta: {final}")
+        await bot.send_message(call.message.chat.id, f"Coletamos {quantidade_numeros()} números")
         
     elif call.data == "rj":
-        global DATA
+        
         await bot.send_message(call.message.chat.id, "Ok, Vamos coletar todos os numeros do estado de RJ, isso vai demorar um tempo, mas eu aviso quando acabar")
         data_coleta = datetime.now()
         DATA = data_coleta.strftime("%d/%m/%Y - %H:%M:%S")
