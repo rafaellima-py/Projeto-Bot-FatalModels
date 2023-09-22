@@ -198,6 +198,11 @@ async def handle_query(call):
         await bot.send_message(call.message.chat.id, f"Coletamos {quantidade_numeros()} números")
 
 async def main():
-   await bot.polling()
+    while True:
+        try: 
+            await bot.polling(none_stop=True)
+        except Exception as e:
+            print(f'Erro: {e}, reconectando...')
+            await asyncio.sleep(5)
 if __name__ == '__main__':
     asyncio.run(main())
