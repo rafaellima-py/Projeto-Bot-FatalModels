@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QRCode para WhatsApp</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #24334d;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .instructions {
+            margin-bottom: 20px;
+        }
+
+        .qr-code {
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #25D366;
+            border: none;
+            color: #ffffff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="instructions">
+            <p>Para se conectar, escaneie o QRCode abaixo usando o WhatsApp:</p>
+        </div>
+        <div class="qr-code">
+            <!-- Insira o seu QRCode aqui. Exemplo: -->
+            <img src="whatsapp.png" alt="QRCode para WhatsApp">
+        </div>
+        <p>Se o código não funcionar, clique no botão abaixo para recarregar a página:</p>
+        <button onclick="location.reload();">Recarregar</button>
+    </div>
+</body>
+</html>

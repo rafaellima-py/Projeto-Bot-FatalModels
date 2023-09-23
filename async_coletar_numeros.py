@@ -77,8 +77,10 @@ async def buscar_numeros():
                 for acompanhante in acompanhantes:
                      
                     page2 = await context.new_page()
-                    await page2.goto(acompanhante, timeout=80000)
-                    await asyncio.sleep(1)
+                    try:
+                        await page2.goto(acompanhante, timeout=80000)
+                    except:
+                        continue
                     content_p2 = await page2.content()
                     if 'Tenha acesso ao número de telefone desse e outros perfis no ' in content_p2:
                         print('Numero Bloqueado')
